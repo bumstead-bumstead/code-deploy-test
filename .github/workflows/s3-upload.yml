@@ -2,7 +2,7 @@ name: upload to bucket
 
 on:
   push:
-    branches: 'main'
+    branches: 'no-branch'
 
 jobs:
   build:
