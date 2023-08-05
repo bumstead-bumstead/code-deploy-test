@@ -2,7 +2,7 @@ name: release server application
 
 on:
   push:
-    branches: 'no-branch'
+    branches: 'main'
 
 jobs:
   release:
@@ -29,7 +29,6 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           
-      # 2. docker push
       - name: Build and push Docker image
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
         with:
@@ -38,7 +37,6 @@ jobs:
           push: true
           tags: bumstead/h2o-backend-server:$GITHUB_SHA
 
-        # 3. scripts s3로 push
       - name: Make scripts zip file
         run: zip -r ./$GITHUB_SHA.zip ./deployScripts
         shell: bash
@@ -54,4 +52,5 @@ jobs:
       - name: Upload scripts to S3
         run: aws s3 cp --region ${{ secrets.AWS_REGION }} ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip
 
-        # 4. code deploy run 
+      - name: run code deploy
+        run: aws deploy create-deployment --application-name ${{ secrets.CODEDEPLOY_NAME }} --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name ${{ secrets.CODEDEPLOY_GROUP }} --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$GITHUB_SHA.zip
