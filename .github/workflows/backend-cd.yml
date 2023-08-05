@@ -35,7 +35,7 @@ jobs:
           context: ${{ env.working-directory }}
           #file: ${{ env.working-directory }}/Dockerfile
           push: true
-          tags: bumstead/h2o-backend-server:$GITHUB_SHA
+          tags: bumstead/h2o-backend-server:latest
 
       - name: Make scripts zip file
         run: zip -r ./$GITHUB_SHA.zip ./deployScripts
