@@ -2,17 +2,15 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /
+    destination: /home/ubuntu/store-1-production
     overwrite: yes
-
 permissions:
-  - object: /
-    pattern: "**"
-    owner: root
-    group: root
-
+  - object: /home/ubuntu/store-1-production
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
 hooks:
-  ApplicationStart:
-    - location: test.sh
-      timeout: 60
-      runas: root
+  AfterInstall:
+    - location: deployScripts/test.sh
+      timeout: 180
+      runas: ubuntu
