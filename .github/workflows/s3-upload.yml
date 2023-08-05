@@ -22,6 +22,10 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
         working-directory : ${{ env.working-directory }}
+
+      - name: Make zip file
+        run: zip -r ./$GITHUB_SHA.zip .
+        shell: bash
       
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
