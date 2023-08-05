@@ -8,7 +8,6 @@ class H2oServerApplicationTests {
 
 	@Test
 	void contextLoads() throws Exception {
-		throw new Exception();
 	}
 
 }
