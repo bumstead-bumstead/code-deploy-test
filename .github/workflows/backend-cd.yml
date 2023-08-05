@@ -32,15 +32,15 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
-          context: ${{ env.working-directory }}
-          #file: ${{ env.working-directory }}/Dockerfile
+          context: ./backend
+          file: ./backend/Dockerfile
           push: true
           tags: bumstead/h2o-backend-server:latest
 
       - name: Make scripts zip file
         run: zip -r ./$GITHUB_SHA.zip ./deployScripts
         shell: bash
-        working-directory: ${{ env.working-directory }}
+        working-directory: ./backend
         
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
