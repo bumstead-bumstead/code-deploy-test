@@ -48,7 +48,9 @@ jobs:
           tags: bumstead/h2o-backend-server:latest
 
       - name: Make scripts zip file
-        run: zip -r ./$GITHUB_SHA.zip ${{ env.working-directory }}/deployScripts/
+        run: |
+          cd ${{ env.working-directory }}
+          zip -r ../$GITHUB_SHA.zip deployScripts
         shell: bash
         
       - name: Configure AWS credentials
