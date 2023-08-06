@@ -5,7 +5,7 @@ files:
     destination: /home/ubuntu/backend
     overwrite: yes
 hooks:
-  AfterInstall:
-    - location: test.sh
+  ApplicationStart:
+    - location: release-backend.sh
       timeout: 60
       runas: ubuntu
