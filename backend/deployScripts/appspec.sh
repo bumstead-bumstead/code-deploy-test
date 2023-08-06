@@ -1,11 +1,11 @@
 version: 0.0
 os: linux
 files:
-  - source: /
-    destination: /home/ubuntu/store-1-production
+  - source: ./
+    destination: ./home/ubuntu/store-1-production
     overwrite: yes
 permissions:
-  - object: /home/ubuntu/store-1-production
+  - object: ./home/ubuntu/store-1-production
     owner: ubuntu
     group: ubuntu
     mode: 755
