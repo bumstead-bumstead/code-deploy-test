@@ -6,6 +6,6 @@ files:
     overwrite: yes
 hooks:
   AfterInstall:
-    - location: deployScripts/test.sh
+    - location: test.sh
       timeout: 60
       runas: ubuntu
